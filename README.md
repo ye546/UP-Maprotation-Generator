@@ -1,0 +1,1 @@
+# maprotation-with-classes
