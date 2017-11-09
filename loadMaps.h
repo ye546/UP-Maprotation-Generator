@@ -9,7 +9,8 @@ class loadMaps
 public:
 	loadMaps();
 	void loadBannedMaps();
-	void readAvailableMaps();
+	std::vector<std::string> readAvailableMaps(std::vector<std::string>* theMaps);
+	std::vector<std::string> idk = _availableMaps;
 private:
 	std::string _fileName;
 	std::string _bannedMaps[12], _maps[130];

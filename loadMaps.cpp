@@ -28,15 +28,12 @@ void loadMaps::loadBannedMaps() {
 	}
 }
 
-void loadMaps::readAvailableMaps() {
+std::vector<std::string> loadMaps::readAvailableMaps(std::vector<std::string>* theMaps) {
 	std::string name; try_again:std::cin >> name;
-	if (name == "quit")
-		exit(1);
-
+	if (name == "quit") exit(1);
 	std::ifstream map(name);
 	std::memset(_maps, 0, sizeof(std::string));
 	if (map.is_open()) {
-		//I'd rather just shove this into the vector immediately, but how?
 		for (int i = 0; i < 130; i++) {
 			map >> _maps[i];
 		}
@@ -47,12 +44,14 @@ void loadMaps::readAvailableMaps() {
 		printf("load a .txt file with the maps you wish to load.\n");
 		goto try_again;
 	}
-	//move the content from the array to the vector, must be a better way to do this rather than copying it from an array?
+
 	printf("moving files to the vector...\n");
+	//this moves the content from the array to the vector
 	for (int i = 0; i < 130; i++) {
 		_availableMaps.push_back(_maps[i]);
 	}
-	//printf content of the vector to see if it read the .txt file successfully
+
+	//print the content of the vector
 	printf("Available maps:\n");
 	for (int i = 0; i < _availableMaps.size(); i++) {
 		if (_availableMaps[i] == "") continue;
@@ -60,9 +59,12 @@ void loadMaps::readAvailableMaps() {
 	}
 	if (_isGood) {
 		printf("%s initiated without a problem.\n", name.c_str());
+		theMaps = &this->_availableMaps;
 	}
 	else {
-		printf("there was an error loading %s, try again.\n", name.c_str());
+		printf("there was an error loading '%s'\n", name.c_str());
 		exit(1);
 	}
+
+	return *theMaps;
 }
