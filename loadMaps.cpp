@@ -23,16 +23,17 @@ void loadMaps::loadBannedMaps() {
 	}
 
 	printf("Skipping these maps: \n");
-	for (int i = 0; i < _unwantedMaps.size(); i++) {
+	for (unsigned int i = 0; i < _unwantedMaps.size(); i++) {
 		std::cout << _unwantedMaps[i] << std::endl;
 	}
 }
 
-std::vector<std::string> loadMaps::readAvailableMaps(std::vector<std::string>* theMaps) {
+void loadMaps::readAvailableMaps(std::vector<std::string> &availableMaps) {
 	std::string name; try_again:std::cin >> name;
 	if (name == "quit") exit(1);
 	std::ifstream map(name);
 	std::memset(_maps, 0, sizeof(std::string));
+	
 	if (map.is_open()) {
 		for (int i = 0; i < 130; i++) {
 			map >> _maps[i];
@@ -48,23 +49,21 @@ std::vector<std::string> loadMaps::readAvailableMaps(std::vector<std::string>* t
 	printf("moving files to the vector...\n");
 	//this moves the content from the array to the vector
 	for (int i = 0; i < 130; i++) {
-		_availableMaps.push_back(_maps[i]);
+		availableMaps.push_back(_maps[i]);
 	}
 
 	//print the content of the vector
 	printf("Available maps:\n");
-	for (int i = 0; i < _availableMaps.size(); i++) {
-		if (_availableMaps[i] == "") continue;
-			std::cout << _availableMaps[i] << std::endl;
+	for (unsigned int i = 0; i < availableMaps.size(); i++) {
+		if (availableMaps[i] == "") continue;
+			std::cout << availableMaps[i] << std::endl;
 	}
 	if (_isGood) {
 		printf("%s initiated without a problem.\n", name.c_str());
-		theMaps = &this->_availableMaps;
+	
 	}
 	else {
 		printf("there was an error loading '%s'\n", name.c_str());
 		exit(1);
 	}
-
-	return *theMaps;
 }

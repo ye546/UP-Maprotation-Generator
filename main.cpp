@@ -2,9 +2,11 @@
 #include <iostream>
 #include <vector>
 #include <Windows.h>
-#include "loadMaps.h"
+#include "generateMapRotation.h"
 int main() {
-	loadMaps lm; lm.readAvailableMaps();
+	generateMapRotation gm;
+	std::vector<std::string> v;
+	gm.generateMaps(v);
 	system("pause");
 	return 0;
 }
