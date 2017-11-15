@@ -4,7 +4,7 @@ loadMaps::loadMaps(){
 
 }
 
-void loadMaps::loadBannedMaps() {
+void loadMaps::loadBannedMaps(std::vector<std::string> &unwantedMaps) {
 	try_again:std::cin >> _fileName;
 	std::ifstream readFile(_fileName);
 	if (readFile.is_open()) {
@@ -19,12 +19,12 @@ void loadMaps::loadBannedMaps() {
 
 	printf("moving fiels to the vector...\n");
 	for (int i = 0; i < 12; i++) {
-		_unwantedMaps.push_back(_bannedMaps[i]);
+		unwantedMaps.push_back(_bannedMaps[i]);
 	}
 
 	printf("Skipping these maps: \n");
-	for (unsigned int i = 0; i < _unwantedMaps.size(); i++) {
-		std::cout << _unwantedMaps[i] << std::endl;
+	for (unsigned int i = 0; i < unwantedMaps.size(); i++) {
+		std::cout << unwantedMaps[i] << std::endl;
 	}
 }
 
@@ -32,7 +32,7 @@ void loadMaps::readAvailableMaps(std::vector<std::string> &availableMaps) {
 	std::string name; try_again:std::cin >> name;
 	if (name == "quit") exit(1);
 	std::ifstream map(name);
-	std::memset(_maps, 0, sizeof(std::string));
+	//std::memset(_maps, 0, sizeof(std::string));
 	
 	if (map.is_open()) {
 		for (int i = 0; i < 130; i++) {

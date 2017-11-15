@@ -7,6 +7,6 @@ class generateMapRotation
 public:
 	generateMapRotation();
 	//std::ifstream newRotation("", std::ifstream::app);
-	void generateMaps(std::vector<std::string> &v);
+	void generateMaps(std::vector<std::string> &v, std::vector<std::string> &v2);
 };
 
