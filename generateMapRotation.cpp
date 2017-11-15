@@ -13,24 +13,35 @@ void generateMapRotation::generateMaps(std::vector<std::string> &v, std::vector<
 	srand(time(NULL));
 	std::vector<std::string> newMaps;
 	loadMaps lm;
-	//CreateDirectoryA("C:/NewRotation", NULL);
-	//newRotation("newMappack.txt", std::ios::app);
+
+	CreateDirectoryA("C:/NewRotation", NULL);
+	newRotation.open("C:/NewRotation/newMappack.txt", std::ios::app);
 	lm.readAvailableMaps(v);
 	lm.loadBannedMaps(v2);
+	
+	int duplicates = 0;
 	int length = (sizeof(v) / sizeof(v[0]));
 
-	for (int i = 0; i < 12; i++) {
+	try_again:for (int i = 0; i < 12; i++) {
 		newMaps[i] = v[rand() % length];
-		if (newMaps[i] == v[0] || v[i] == v[1] ||
-			newMaps[i] == v[2] || v[i] == v[3] ||
-			newMaps[i] == v[4] || v[i] == v[5] ||
-			newMaps[i] == v[6] || v[i] == v[7] ||
-			newMaps[i] == v[8] || v[i] == v[9] ||
-			newMaps[i] == v[10] || newMaps[i] == v[11]) {
-			continue;
+		if (newMaps[i] == v2[0] || v2[i] == v2[1] ||
+			newMaps[i] == v2[2] || v2[i] == v2[3] ||
+			newMaps[i] == v2[4] || v2[i] == v2[5] ||
+			newMaps[i] == v2[6] || v2[i] == v2[7] ||
+			newMaps[i] == v2[8] || v2[i] == v2[9] ||
+			newMaps[i] == v2[10] || newMaps[i] == v2[11]) {
+			v.clear();
+			duplicates += 1;
+			goto try_again;
 		}
 		else {
-			//write to file
+			if (newRotation.is_open()) {
+				for (int i = 0; i < 12; i++) {
+					newRotation << " map " << newMaps[i];
+				}
+				newRotation.close();
+			}
+			printf("redid the process %i times\n", duplicates);
 		}
 	}
 }
