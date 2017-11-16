@@ -12,6 +12,6 @@ public:
 	void readAvailableMaps(std::vector<std::string> &availableMaps);
 private:
 	std::string _fileName;
-	std::vector<std::string> _bannedMaps, _bannedMaps, _maps;
+	std::ifstream _readFile, _map;
 	bool _isGood;
 };
