@@ -7,6 +7,7 @@
 int main() {
 	generateMapRotation gm;
 	std::vector<std::string> v, v2;
+	//gm.generateMaps(v, v2
 	gm.generateMaps(v, v2);
 
 	system("pause");
