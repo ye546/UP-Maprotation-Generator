@@ -4,6 +4,9 @@
 #include <Windows.h>
 #include "generateMapRotation.h"
 #include "loadMaps.h"
+
+
+
 int main() {
 	generateMapRotation gm;
 	std::vector<std::string> v, v2;

@@ -1,10 +1,19 @@
 #include "loadMaps.h"
 #include <cstdio>
+#include <Windows.h>
+#include "Colors.h"
+
+
 loadMaps::loadMaps() {
 
 }
 
 void loadMaps::loadBannedMaps(std::vector<std::string> unwantedMaps) {
+	HANDLE hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(hstdout, &csbi);
+	SetConsoleTextAttribute(hstdout, Colors::colors::Magenta);
+
 	printf("\n--loadBannedMaps func--\n");
 	std::memset(_bannedMaps, 0, sizeof(std::string));
 	try_again:std::cin >> _fileName;
@@ -27,10 +36,15 @@ void loadMaps::loadBannedMaps(std::vector<std::string> unwantedMaps) {
 		std::cout << unwantedMaps[i] << std::endl;
 	}
 
-	printf("\n(%i indexes=\n", unwantedMaps.size());
+	printf("\n(%i indexes)\n", unwantedMaps.size());
 }
 
 void loadMaps::readAvailableMaps(std::vector<std::string> availableMaps) {
+	HANDLE hstdout = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(hstdout, &csbi);
+	SetConsoleTextAttribute(hstdout, Colors::colors::Red);
+	
 	printf("--readAvailableMaps func--\n");
 	std::memset(_availableMaps, 0, sizeof(std::string));
 	std::string name; try_again:std::cin >> name;
