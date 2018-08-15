@@ -1,3 +1,2 @@
 # maprotation-with-classes
-If you want to compile it you'll have to provide it with your own manifest file,
-as well as resource file and resource header.
+To compile you'll need a manifest file, resource file, resource header and an icon.
