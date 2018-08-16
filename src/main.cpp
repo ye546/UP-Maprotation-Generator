@@ -77,7 +77,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInstance, LPSTR lpCmdLine, in
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-	HFONT hf, sHf;
+	HFONT hf;
 	long lfHeight;
 	HDC hdc;
 	switch (msg)
