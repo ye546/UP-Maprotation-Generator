@@ -1,0 +1,5 @@
+#include "Resources.h"
+
+UP_ICON ICON "icon.ico"
+
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "up.exe.manifest"
