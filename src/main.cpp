@@ -1,13 +1,12 @@
 #include <Windows.h>
 #include <commctrl.h>					//needed for "visual style"
 #include <cstdlib>
-#include <cstdio>
 #include <ctime>
 #include <vector>
 #include <fstream>
 #include <string>
 #include "Resources.h"
-#pragma comment(lib, "Comctl32.lib")	//needed for "visual style"
+#pragma comment(lib, "Comctl32.lib")			//needed for "visual style"
 
 
 HINSTANCE hInst;
